@@ -7,7 +7,7 @@ using AspNetCoreDemo.WebApi;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
 
-namespace AspNetCoreDemo.Tests.IntegrationTests.Controllers
+namespace AspNetCoreDemo.IntegrationTests.Controllers
 {
     public class HomeControllerIntegrationTest: ControllerIntegrationTestBase
     {

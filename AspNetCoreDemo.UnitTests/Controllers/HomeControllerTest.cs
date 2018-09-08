@@ -2,7 +2,7 @@ using AspNetCoreDemo.WebApi.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Xunit;
 
-namespace AspNetCoreDemo.Tests.UnitTests.Controllers
+namespace AspNetCoreDemo.UnitTests.Controllers
 {
     public class HomeControllerTest
     {
