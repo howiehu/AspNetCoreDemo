@@ -9,9 +9,9 @@ using Xunit;
 
 namespace AspNetCoreDemo.IntegrationTests.Controllers
 {
-    public class HomeControllerIntegrationTest: ControllerIntegrationTestBase
+    public class HomeControllerTest: ControllerTestBase
     {
-        public HomeControllerIntegrationTest(WebApplicationFactory<Startup> factory) : base(factory)
+        public HomeControllerTest(WebApplicationFactory<Startup> factory) : base(factory)
         {
         }
 

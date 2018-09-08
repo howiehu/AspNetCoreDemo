@@ -4,11 +4,11 @@ using Xunit;
 
 namespace AspNetCoreDemo.IntegrationTests.Controllers
 {
-    public abstract class ControllerIntegrationTestBase : IClassFixture<WebApplicationFactory<Startup>>
+    public abstract class ControllerTestBase : IClassFixture<WebApplicationFactory<Startup>>
     {
         internal readonly WebApplicationFactory<Startup> _factory;
 
-        internal ControllerIntegrationTestBase(WebApplicationFactory<Startup> factory)
+        internal ControllerTestBase(WebApplicationFactory<Startup> factory)
         {
             _factory = factory;
         }
