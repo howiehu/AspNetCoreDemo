@@ -9,6 +9,7 @@ using AspNetCoreDemo.WebApi;
 using AspNetCoreDemo.WebApi.Models;
 using AspNetCoreDemo.WebApi.Repositories;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using Xunit;
@@ -35,7 +36,7 @@ namespace AspNetCoreDemo.IntegrationTests.Controllers
             var client = _factory
                 .WithWebHostBuilder(builder =>
                 {
-                    builder.ConfigureServices(services =>
+                    builder.ConfigureTestServices(services =>
                     {
                         services.AddTransient(c => mockUserRepository.Object);
                     });
