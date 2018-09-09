@@ -12,6 +12,12 @@
 
 ## 运行程序
 
+使用 `Docker Compose` 启动已经过配置的 `SQL Server` 容器（默认端口号为 1433）：
+
+```bash
+docker-compose up -d
+```
+
 运行以下命令启动程序：
 
 ```bash
