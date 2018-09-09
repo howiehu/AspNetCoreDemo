@@ -16,7 +16,7 @@ namespace AspNetCoreDemo.IntegrationTests.Controllers
         }
 
         [Fact]
-        public async Task Index_return_correct_message_when_has_been_called()
+        public async Task Index_return_correct_message_when_call()
         {
             var client = _factory.CreateClient();
 
