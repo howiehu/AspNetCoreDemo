@@ -15,7 +15,7 @@ namespace AspNetCoreDemo.WebApi.Repositories
             _context = context;
         }
 
-        public async Task<List<User>> FindAll()
+        public virtual async Task<List<User>> FindAll()
         {
             using (_context)
             {

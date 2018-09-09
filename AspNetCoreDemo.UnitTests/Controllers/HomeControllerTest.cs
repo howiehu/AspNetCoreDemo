@@ -7,7 +7,7 @@ namespace AspNetCoreDemo.UnitTests.Controllers
     public class HomeControllerTest
     {
         [Fact]
-        public void Index_return_correct_message_when_call()
+        public void Index_return_correct_message_when_has_been_called()
         {
             var controller = new HomeController();
 
