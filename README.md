@@ -31,6 +31,12 @@ dotnet run --project AspNetCoreDemo.WebApi
 
 ## 运行测试
 
+使用以下命令运行 Controller 的端到端测试：
+
+```bash
+dotnet test AspNetCoreDemo.E2ETests
+```
+
 使用以下命令运行 Controller 的集成测试：
 
 ```bash
