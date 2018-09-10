@@ -2,7 +2,7 @@ using System;
 using AspNetCoreDemo.WebApi;
 using AspNetCoreDemo.WebApi.Configurations;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.AspNetCore.TestHost;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
@@ -21,14 +21,26 @@ namespace AspNetCoreDemo.E2ETests
         {
             return _factory.WithWebHostBuilder(builder =>
             {
-                builder.ConfigureTestServices(async services =>
+                builder.ConfigureServices(async services =>
                 {
-                    var serviceProvider = services.BuildServiceProvider();
+                    var serviceProvider = new ServiceCollection()
+                        .AddEntityFrameworkInMemoryDatabase()
+                        .BuildServiceProvider();
+                    
+                    services.AddDbContext<DemoContext>(options => 
+                    {
+                        options.UseInMemoryDatabase("InMemoryDbForTesting");
+                        options.UseInternalServiceProvider(serviceProvider);
+                    });
+                    
+                    var sc = services.BuildServiceProvider();
 
-                    using (var scope = serviceProvider.CreateScope())
+                    using (var scope = sc.CreateScope())
                     {
                         var scopedServices = scope.ServiceProvider;
                         var context = scopedServices.GetRequiredService<DemoContext>();
+                        
+                        await context.Database.EnsureCreatedAsync();
 
                         dbContextActions(context);
                         await context.SaveChangesAsync();

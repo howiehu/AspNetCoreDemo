@@ -31,6 +31,7 @@ namespace AspNetCoreDemo.E2ETests
             Assert.Equal(Encoding.UTF8.HeaderName, response.Content.Headers.ContentType.CharSet);
 
             var actualUsers = response.Content.ReadAsAsync<List<User>>().Result;
+            Assert.Single(actualUsers);
             Assert.Contains(actualUsers, user => user.Name.Equals("Alex"));
         }
     }
