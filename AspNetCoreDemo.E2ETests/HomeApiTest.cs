@@ -4,17 +4,15 @@ using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 using AspNetCoreDemo.WebApi;
+using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
 
 namespace AspNetCoreDemo.E2ETests
 {
-    public class HomeApiTest : IClassFixture<TestWebApplicationFactory<Startup>>
+    public class HomeApiTest : ApiTestBase
     {
-        private readonly TestWebApplicationFactory<Startup> _factory;
-
-        public HomeApiTest(TestWebApplicationFactory<Startup> factory)
+        public HomeApiTest(WebApplicationFactory<Startup> factory) : base(factory)
         {
-            _factory = factory;
         }
 
         [Fact]
