@@ -11,7 +11,7 @@ namespace AspNetCoreDemo.E2ETests
 {
     public class HomeApiTest : ApiTestBase
     {
-        public HomeApiTest(WebApplicationFactory<Startup> factory) : base(factory)
+        public HomeApiTest(TestWebApplicationFactory<Startup> factory) : base(factory)
         {
         }
 

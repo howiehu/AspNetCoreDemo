@@ -2,17 +2,16 @@ using System;
 using AspNetCoreDemo.WebApi;
 using AspNetCoreDemo.WebApi.Configurations;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
 namespace AspNetCoreDemo.E2ETests
 {
-    public abstract class ApiTestBase : IClassFixture<WebApplicationFactory<Startup>>
+    public abstract class ApiTestBase : IClassFixture<TestWebApplicationFactory<Startup>>
     {
-        internal readonly WebApplicationFactory<Startup> _factory;
+        internal readonly TestWebApplicationFactory<Startup> _factory;
 
-        internal ApiTestBase(WebApplicationFactory<Startup> factory)
+        internal ApiTestBase(TestWebApplicationFactory<Startup> factory)
         {
             _factory = factory;
         }
@@ -23,16 +22,6 @@ namespace AspNetCoreDemo.E2ETests
             {
                 builder.ConfigureServices(async services =>
                 {
-                    var serviceProvider = new ServiceCollection()
-                        .AddEntityFrameworkInMemoryDatabase()
-                        .BuildServiceProvider();
-                    
-                    services.AddDbContext<DemoContext>(options => 
-                    {
-                        options.UseInMemoryDatabase("InMemoryDbForTesting");
-                        options.UseInternalServiceProvider(serviceProvider);
-                    });
-                    
                     var sc = services.BuildServiceProvider();
 
                     using (var scope = sc.CreateScope())

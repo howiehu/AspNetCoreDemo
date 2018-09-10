@@ -7,14 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 using AspNetCoreDemo.WebApi;
 using AspNetCoreDemo.WebApi.Models;
-using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
 
 namespace AspNetCoreDemo.E2ETests
 {
     public class UsersApiTest : ApiTestBase
     {
-        public UsersApiTest(WebApplicationFactory<Startup> factory) : base(factory)
+        public UsersApiTest(TestWebApplicationFactory<Startup> factory) : base(factory)
         {
         }
 
