@@ -55,7 +55,7 @@ dotnet test AspNetCoreDemo.UnitTests
 
 #### 演示符合测试金字塔的测试运行速度差异
 
-1. 在 Intellij IDEA 中运行全部测试。
+1. 在 IDE 中运行全部测试。
 2. 对比 UserController 的全部测试，会发运行速度有符合测试金字塔的明显差异。
 
 #### 演示测试驱动开发的过程
