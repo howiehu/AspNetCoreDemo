@@ -29,7 +29,7 @@ namespace AspNetCoreDemo.IntegrationTests.Repositories
 
                 var users = await repository.FindAll();
 
-                Assert.Equal(1, users.Count);
+                Assert.Single(users);
                 Assert.Contains(users, user => user.Name.Equals("Alex"));
             }
         }
