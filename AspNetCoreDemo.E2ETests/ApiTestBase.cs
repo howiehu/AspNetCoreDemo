@@ -17,7 +17,7 @@ namespace AspNetCoreDemo.E2ETests
             _factory = factory;
         }
 
-        protected WebApplicationFactory<Startup> InitializeDbForTest(Action<DemoContext> dbContextActions)
+        internal WebApplicationFactory<Startup> InitializeDbForTest(Action<DemoContext> dbContextActions)
         {
             return _factory.WithWebHostBuilder(builder =>
             {

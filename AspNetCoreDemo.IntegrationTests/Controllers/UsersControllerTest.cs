@@ -9,7 +9,6 @@ using AspNetCoreDemo.WebApi;
 using AspNetCoreDemo.WebApi.Models;
 using AspNetCoreDemo.WebApi.Repositories;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using Xunit;
@@ -33,14 +32,7 @@ namespace AspNetCoreDemo.IntegrationTests.Controllers
             var mockUserRepository = new Mock<UserRepository>(null);
             mockUserRepository.Setup(repository => repository.FindAll()).ReturnsAsync(expectedUsers);
 
-            var client = _factory
-                .WithWebHostBuilder(builder =>
-                {
-                    builder.ConfigureTestServices(services =>
-                    {
-                        services.AddTransient(c => mockUserRepository.Object);
-                    });
-                })
+            var client = RegisterMockComponents(services => services.AddTransient(c => mockUserRepository.Object))
                 .CreateClient();
 
             var response = await client.GetAsync("/users");
@@ -48,7 +40,7 @@ namespace AspNetCoreDemo.IntegrationTests.Controllers
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             Assert.Equal(MediaTypeNames.Application.Json, response.Content.Headers.ContentType.MediaType);
             Assert.Equal(Encoding.UTF8.HeaderName, response.Content.Headers.ContentType.CharSet);
-            
+
             var actualUsers = response.Content.ReadAsAsync<List<User>>().Result;
             Assert.Contains(actualUsers, user => user.Name.Equals("Alex"));
         }
