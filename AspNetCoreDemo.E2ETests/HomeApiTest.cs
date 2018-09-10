@@ -4,7 +4,6 @@ using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 using AspNetCoreDemo.WebApi;
-using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
 
 namespace AspNetCoreDemo.E2ETests
