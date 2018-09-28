@@ -7,7 +7,7 @@ namespace AspNetCoreDemo.WebApi.Controllers
     public class HomeController: ControllerBase
     {
         [HttpGet]
-        public IActionResult Index()
+        public JsonResult Index()
         {
             return new JsonResult("Hello World!");
         }

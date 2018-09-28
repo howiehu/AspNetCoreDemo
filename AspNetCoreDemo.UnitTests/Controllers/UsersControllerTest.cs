@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using AspNetCoreDemo.WebApi.Controllers;
 using AspNetCoreDemo.WebApi.Models;
 using AspNetCoreDemo.WebApi.Repositories;
-using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Xunit;
 
@@ -19,11 +18,9 @@ namespace AspNetCoreDemo.UnitTests.Controllers
             mockUserRepository.Setup(repository => repository.FindAll()).ReturnsAsync(expectedUsers);
             var controller = new UsersController(mockUserRepository.Object);
 
-            var actionResult = await controller.Index();
+            var result = await controller.Index();
 
-            var jsonResult = Assert.IsType<JsonResult>(actionResult);
-            var value = Assert.IsAssignableFrom<List<User>>(jsonResult.Value);
-            Assert.Same(expectedUsers, value);
+            Assert.Same(expectedUsers, result);
         }
     }
 }

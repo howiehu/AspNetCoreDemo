@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using AspNetCoreDemo.WebApi.Models;
 using AspNetCoreDemo.WebApi.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,9 +18,9 @@ namespace AspNetCoreDemo.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<List<User>> Index()
         {
-            return new JsonResult(await _userRepository.FindAll());
+            return await _userRepository.FindAll();
         }
     }
 }
