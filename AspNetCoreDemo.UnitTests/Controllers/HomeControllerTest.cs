@@ -1,4 +1,5 @@
 using AspNetCoreDemo.WebApi.Controllers;
+using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Xunit;
 
@@ -13,9 +14,7 @@ namespace AspNetCoreDemo.UnitTests.Controllers
 
             var actionResult = controller.Index();
 
-            var jsonResult = Assert.IsType<JsonResult>(actionResult);
-            var value = Assert.IsAssignableFrom<string>(jsonResult.Value);
-            Assert.Equal("Hello World!", value);
+            actionResult.Should().Be("Hello World!");
         }
     }
 }

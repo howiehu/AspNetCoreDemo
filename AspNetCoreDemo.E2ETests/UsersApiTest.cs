@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using AspNetCoreDemo.WebApi;
 using AspNetCoreDemo.WebApi.Models;
+using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace AspNetCoreDemo.E2ETests
@@ -24,14 +26,15 @@ namespace AspNetCoreDemo.E2ETests
                 .CreateClient();
 
             var response = await client.GetAsync("/users");
-
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-            Assert.Equal(MediaTypeNames.Application.Json, response.Content.Headers.ContentType.MediaType);
-            Assert.Equal(Encoding.UTF8.HeaderName, response.Content.Headers.ContentType.CharSet);
-
-            var actualUsers = response.Content.ReadAsAsync<List<User>>().Result;
-            Assert.Single(actualUsers);
-            Assert.Contains(actualUsers, user => user.Name.Equals("Alex"));
+            
+            using (new AssertionScope())
+            {
+                response.StatusCode.Should().Be(HttpStatusCode.OK);
+                response.Content.Headers.ContentType.MediaType.Should().Be(MediaTypeNames.Application.Json);
+                response.Content.Headers.ContentType.CharSet.Should().Be(Encoding.UTF8.HeaderName);
+                response.Content.ReadAsAsync<List<User>>().Result
+                    .Should().ContainSingle(user => user.Name.Equals("Alex"));
+            }
         }
     }
 }

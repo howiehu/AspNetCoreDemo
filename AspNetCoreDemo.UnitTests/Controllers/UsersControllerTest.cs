@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using AspNetCoreDemo.WebApi.Controllers;
 using AspNetCoreDemo.WebApi.Models;
 using AspNetCoreDemo.WebApi.Repositories;
+using FluentAssertions;
 using Moq;
 using Xunit;
 
@@ -20,7 +21,7 @@ namespace AspNetCoreDemo.UnitTests.Controllers
 
             var result = await controller.Index();
 
-            Assert.Same(expectedUsers, result);
+            result.Should().BeSameAs(expectedUsers);
         }
     }
 }
