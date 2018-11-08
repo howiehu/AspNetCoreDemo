@@ -1,6 +1,5 @@
 using AspNetCoreDemo.WebApi.Controllers;
 using FluentAssertions;
-using Microsoft.AspNetCore.Mvc;
 using Xunit;
 
 namespace AspNetCoreDemo.UnitTests.Controllers
