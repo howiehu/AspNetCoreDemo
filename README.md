@@ -51,6 +51,18 @@ dotnet test AspNetCoreDemo.UnitTests
 
 ## 备忘
 
+### Shadow Copy
+
+在运行测试的时候复制代码并另行构建和运行测试，而不破坏原有的构建结果，这个功能叫做 Shadow Copy。它的好处是可以使得构建和测试并行。
+
+但是带来的问题是在早期的 Rider 版本中无法对测试代码的 SUT 断点进行单步调试（可能是因为测试在另一个构建后的进程中运行），最新版本中这个问题好像不存在了（有待观察），如果相关问题依旧发生，可以通过添加并在 xUnit 的配置文件 `xunit.runner.json` 中配置如下参数关闭 Shadow Copy：
+
+```json
+{
+  "shadowCopy": false
+}
+```
+
 ### 可以利用本 Demo 进行的演示
 
 #### 演示符合测试金字塔的测试运行速度差异
