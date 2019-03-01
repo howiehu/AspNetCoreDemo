@@ -18,6 +18,11 @@
 docker-compose up -d
 ```
 
+运行以下命令初始化（迁移）数据库结构：
+```bash
+dotnet ef --project AspNetCoreDemo.WebApi database update
+```
+
 运行以下命令启动程序：
 
 ```bash
